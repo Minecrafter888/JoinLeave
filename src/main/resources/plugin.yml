@@ -1,0 +1,17 @@
+name: Test
+version: '${project.version}'
+main: me.hephaestus2023.test.Test
+api-version: 1.18
+commands:
+  feed:
+    description: to feed yourself
+    usage: /<command>
+    permission: Test.Feed
+  god:
+    description: turn unbeatable
+    usage: /<command>
+    permission: Test.Godmode
+  invis:
+    description: turn invisible
+    usage: /<command>
+    permission: Test.Invis
