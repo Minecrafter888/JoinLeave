@@ -1,9 +1,10 @@
 package me.hephaestus2023.test;
 
 import me.hephaestus2023.test.JoinLeaveListener.joinleaveListener;
+import me.hephaestus2023.test.commands.Reload;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class Test extends JavaPlugin {
+public final class EGCustom extends JavaPlugin {
 
     @Override
     public void onEnable() {
@@ -11,6 +12,7 @@ public final class Test extends JavaPlugin {
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new joinleaveListener(), this);
+        getCommand("reload-Test").setExecutor(new Reload());
 
     }
 
