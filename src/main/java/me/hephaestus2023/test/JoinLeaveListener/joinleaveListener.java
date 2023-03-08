@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2023. Hephaestus2023
+ * All rights reserved to owner
+ */
+
 package me.hephaestus2023.test.JoinLeaveListener;
 
 import me.hephaestus2023.test.EGCustom;
@@ -18,12 +23,12 @@ public class joinleaveListener implements Listener {
         Player player = event.getPlayer();
 
         if (player.hasPlayedBefore()){
-            String ja = plugin.getConfig().getString("welcome-again").replace("$player", player.getName());
+            String ja = plugin.getConfig().getString("JoinLeave.welcome-again").replace("$player", player.getName());
             event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', ja));
 
         }
         else{
-            String j = plugin.getConfig().getString("welcome").replace("$player", player.getName());
+            String j = plugin.getConfig().getString("JoinLeave.welcome").replace("$player", player.getName());
             event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', j));
 
         }
@@ -37,7 +42,7 @@ public class joinleaveListener implements Listener {
     @EventHandler
     public void Leave(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        String l = plugin.getConfig().getString("leave").replace("$player", player.getName());
+        String l = plugin.getConfig().getString("JoinLeave.Leave").replace("$player", player.getName());
         String p = player.getName();
 
         event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', l));

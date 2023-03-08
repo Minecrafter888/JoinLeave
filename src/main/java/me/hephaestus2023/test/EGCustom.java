@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 2023. Hephaestus2023
+ * All rights reserved to owner
+ */
+
 package me.hephaestus2023.test;
 
 import me.hephaestus2023.test.JoinLeaveListener.joinleaveListener;
+import me.hephaestus2023.test.commands.Class;
 import me.hephaestus2023.test.commands.Reload;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +19,7 @@ public final class EGCustom extends JavaPlugin {
         saveDefaultConfig();
         getServer().getPluginManager().registerEvents(new joinleaveListener(), this);
         getCommand("reload-Test").setExecutor(new Reload());
+        getCommand("Class").setExecutor(new Class());
 
     }
 

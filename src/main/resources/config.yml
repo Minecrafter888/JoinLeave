@@ -1,3 +1,4 @@
-welcome-again: "Welcome back to our server $player"
-welcome: "Welcome $player we hope you enjoy your stay here"
-leave: "$player has left the galaxy. Let's hope they have a safe travel!!!"
+JoinLeave:
+  welcome-again: "Welcome back to our server $player"
+  welcome: "Welcome $player we hope you enjoy your stay here"
+  leave: "$player has left the galaxy. Let's hope they have a safe travel!!!"
