@@ -3,6 +3,7 @@ JoinLeave:
   welcome: "Welcome $player we hope you enjoy your stay here"
   leave: "$player has left the galaxy. Let's hope they have a safe travel!!!"
 Classes:
-  DpsBuffMulti: 1
-  HealerBuffMulti: 1
-  TankBuffMulti: 10
+  DpsBuffMultiplier: 1
+  HealerBuffMultiplier: 1
+  TankBuffMultiplier: 9
+  commandcooldown: 10000

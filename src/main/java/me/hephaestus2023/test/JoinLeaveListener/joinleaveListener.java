@@ -24,12 +24,12 @@ public class joinleaveListener implements Listener {
 
         if (player.hasPlayedBefore()){
             String ja = plugin.getConfig().getString("JoinLeave.welcome-again").replace("$player", player.getName());
-            event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', ja));
+            event.setJoinMessage(ja);
 
         }
         else{
             String j = plugin.getConfig().getString("JoinLeave.welcome").replace("$player", player.getName());
-            event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', j));
+            event.setJoinMessage(j);
 
         }
 
@@ -45,7 +45,7 @@ public class joinleaveListener implements Listener {
         String l = plugin.getConfig().getString("JoinLeave.Leave").replace("$player", player.getName());
         String p = player.getName();
 
-        event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', l));
+        event.setQuitMessage(l);
 
     }
 }

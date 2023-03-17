@@ -5,6 +5,7 @@
 
 package me.hephaestus2023.test.commands;
 
+import me.hephaestus2023.test.EGCustom;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -15,12 +16,28 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Class implements CommandExecutor {
+    Plugin plugin = EGCustom.getPlugin(EGCustom.class);
+    Map<String, Long> cooldowns = new HashMap<String, Long>();
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player) {
             Player p = (Player) sender;
+            if(cooldowns.containsKey(p.getName())){
+                if(cooldowns.get(p.getName()) > System.currentTimeMillis()){
+                    long timeleft = (cooldowns.get(p.getName()) - System.currentTimeMillis()) / 1000;
+                    p.sendMessage(ChatColor.RED + "You are able to use command again in " + timeleft + " seconds");
+
+                }
+            }
+            int cmdcooldown = plugin.getConfig().getInt("Classes.commandcooldown");
+            cooldowns.put(p.getName(), System.currentTimeMillis() + (cmdcooldown));
 
             Inventory invent = Bukkit.createInventory(p, 9, ChatColor.GOLD + "Classes");
 

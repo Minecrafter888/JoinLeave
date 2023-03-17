@@ -17,13 +17,13 @@ public class onDrop implements Listener {
 
        Player p = e.getPlayer();
 
-       if (e.getItemDrop().getName().equalsIgnoreCase("Dps sword")){
+       if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Dps sword")){
 
            e.setCancelled(true);
-       }if (e.getItemDrop().getName().equalsIgnoreCase("Healer bow")){
+       }if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Healer bow")){
 
            e.setCancelled(true);
-       }if (e.getItemDrop().getName().equalsIgnoreCase("Tank shield")){
+       }if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Tank shield")){
 
            e.setCancelled(true);
        }
