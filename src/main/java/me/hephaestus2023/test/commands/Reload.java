@@ -24,7 +24,9 @@ public class Reload implements CommandExecutor {
             Player p = (Player) sender;
             if (p.hasPermission("Test.Reload")){
 
+
                 plugin.reloadConfig();
+                plugin.saveConfig();
                 Bukkit.getLogger().info("[Test] has been reloaded");
                 p.sendMessage("Plugin is being reset");
 
@@ -39,6 +41,7 @@ public class Reload implements CommandExecutor {
         } else if (sender instanceof ConsoleCommandSender){
 
             plugin.reloadConfig();
+            plugin.saveConfig();
             Bukkit.getLogger().info("[Test] has been reloaded");
 
         }else{

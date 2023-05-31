@@ -11,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class onDrop implements Listener {
-
    @EventHandler
     public void onDrop(PlayerDropItemEvent e){
 
@@ -24,6 +23,9 @@ public class onDrop implements Listener {
 
            e.setCancelled(true);
        }if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Tank shield")){
+
+           e.setCancelled(true);
+       }if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Miner pickaxe")){
 
            e.setCancelled(true);
        }

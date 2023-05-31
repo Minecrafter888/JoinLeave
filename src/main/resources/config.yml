@@ -6,4 +6,7 @@ Classes:
   DpsBuffMultiplier: 1
   HealerBuffMultiplier: 1
   TankBuffMultiplier: 9
-  commandcooldown: 10000
+  Minerbuffmultiplier: 1
+  Diverbuffmultiplier: 1
+  allowedwords: "wild"
+  CommandCooldown: 10000

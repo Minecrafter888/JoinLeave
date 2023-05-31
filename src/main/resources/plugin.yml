@@ -3,7 +3,7 @@ version: '${project.version}'
 main: me.hephaestus2023.test.EGCustom
 api-version: 1.18
 commands:
-  Class:
+  C:
     description: this command allows for a class to be selected
     usage: /<command>
   reload-Test:

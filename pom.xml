@@ -6,7 +6,7 @@
 
     <groupId>me.Hephaestus2023</groupId>
     <artifactId>EGCustom</artifactId>
-    <version>3.0</version>
+    <version>3.1</version>
     <packaging>jar</packaging>
 
     <name>EGCustom</name>
