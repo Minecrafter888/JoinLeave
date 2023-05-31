@@ -5,14 +5,13 @@
 
 package me.hephaestus2023.test;
 
-import me.hephaestus2023.test.JoinLeaveListener.ClassListener;
-import me.hephaestus2023.test.JoinLeaveListener.JoinEvent;
-import me.hephaestus2023.test.JoinLeaveListener.moveListener;
-import me.hephaestus2023.test.JoinLeaveListener.onDrop;
+import me.hephaestus2023.test.Listeners.ClassListener;
+import me.hephaestus2023.test.Listeners.JoinEvent;
+import me.hephaestus2023.test.Listeners.moveListener;
+import me.hephaestus2023.test.Listeners.onDrop;
 import me.hephaestus2023.test.commands.Class;
 import me.hephaestus2023.test.commands.Reload;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;

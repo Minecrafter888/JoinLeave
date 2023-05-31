@@ -3,7 +3,7 @@
  * All rights reserved to owner
  */
 
-package me.hephaestus2023.test.JoinLeaveListener;
+package me.hephaestus2023.test.Listeners;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

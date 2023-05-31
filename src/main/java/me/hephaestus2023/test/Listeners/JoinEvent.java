@@ -3,7 +3,7 @@
  * All rights reserved to owner
  */
 
-package me.hephaestus2023.test.JoinLeaveListener;
+package me.hephaestus2023.test.Listeners;
 
 import me.hephaestus2023.test.EGCustom;
 import org.bukkit.configuration.file.YamlConfiguration;
