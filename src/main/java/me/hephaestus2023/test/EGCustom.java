@@ -7,6 +7,7 @@ package me.hephaestus2023.test;
 
 import me.hephaestus2023.test.JoinLeaveListener.ClassListener;
 import me.hephaestus2023.test.JoinLeaveListener.JoinEvent;
+import me.hephaestus2023.test.JoinLeaveListener.moveListener;
 import me.hephaestus2023.test.JoinLeaveListener.onDrop;
 import me.hephaestus2023.test.commands.Class;
 import me.hephaestus2023.test.commands.Reload;
@@ -30,6 +31,7 @@ public final class EGCustom extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onDrop(), this);
         getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         getServer().getPluginManager().registerEvents(new ClassListener(this), this);
+        getServer().getPluginManager().registerEvents(new moveListener(), this);
         getCommand("reload-Test").setExecutor(new Reload());
         getCommand("Class").setExecutor(new Class());
 
