@@ -67,6 +67,6 @@ public class ItemStacks {
         ItemMeta diver = trident.getItemMeta();
         diver.setDisplayName("Diver trident");
         trident.setItemMeta(diver);
-        return trident
+        return trident;
     }
 }
