@@ -79,7 +79,7 @@ public class Class implements CommandExecutor {
             ItemStack diver = new ItemStack(Material.TRIDENT, 1);
             ItemMeta Divermeta = diver.getItemMeta();
             Divermeta.setDisplayName(ChatColor.BLUE + "Diver Class");
-            diver.setItemMeta(Minermeta);
+            diver.setItemMeta(Divermeta);
 
             invent.setItem(4, diver);
 
