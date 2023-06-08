@@ -9,57 +9,113 @@ import me.hephaestus2023.test.EGCustom;
 import me.hephaestus2023.test.Utils.InventUtil;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 import static me.hephaestus2023.test.Utils.ItemStacks.*;
 
 public class TPListener implements Listener {
+    private YamlConfiguration loadPlayerConfiguration(UUID playerUUID) {
+        File dataFolder = new File(plugin.getDataFolder(), "playerdata");
+        File playerFile = new File(dataFolder, playerUUID + ".yml");
+
+        if (playerFile.exists()) {
+            return YamlConfiguration.loadConfiguration(playerFile);
+        }
+
+        return null;
+    }
+    private void savePlayerConfiguration(UUID playerUUID, YamlConfiguration config) {
+        File dataFolder = new File(plugin.getDataFolder(), "playerdata");
+        File playerFile = new File(dataFolder, playerUUID + ".yml");
+
+        try {
+            config.save(playerFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void items(){
         ItemStack pick = Pickaxe();
         ItemStack DPS = Sword();
         ItemStack TANK = Shield();
         ItemStack HEALERBOW = Bow();
         ItemStack HEALERARROW = Arrow();
+        ItemStack Diver = Trident();
     }
     Plugin plugin = EGCustom.getPlugin(EGCustom.class);
     @EventHandler
     public void playerteleport(PlayerTeleportEvent e){
         Player p = e.getPlayer();
+        UUID playerUUID = p.getUniqueId();
         boolean hasSword = InventUtil.hasItem(p, Sword());
         boolean hasShield = InventUtil.hasItem(p, Shield());
         boolean hasPickaxe = InventUtil.hasItem(p, Pickaxe());
         boolean hasBow = InventUtil.hasItem(p, Bow());
-        boolean hasArrow = InventUtil.hasItem(p, Arrow());
+        boolean hasTrident = InventUtil.hasItem(p, Trident());
+        int Dps = plugin.getConfig().getInt("Classes.DpsBuffMultiplier");
+        int Healer = plugin.getConfig().getInt("Classes.HealerBuffMultiplier");
+        int Tank = plugin.getConfig().getInt("Classes.TankBuffMultiplier");
+        int Miner = plugin.getConfig().getInt("Classes.Minerbuffmultiplier");
+        int Diver = plugin.getConfig().getInt("Classes.Diverbuffmultiplier");
+        YamlConfiguration playerConfig = loadPlayerConfiguration(playerUUID);
         String worlds = plugin.getConfig().getString("Classes.allowedwords");
         Location Destination = e.getTo();
         World Destination_world = Destination.getWorld();
-        World OriginWorld = e.getFrom().getWorld();
         if(Destination_world.getName().equals(worlds)){
-            if(hasSword){
-                return;
-            }else{
-                p.getInventory().addItem(Sword());
+            String playerClass = playerConfig.getString("Class");
+            if(playerClass.equals("Dps")){
+                if(hasSword){
+                    return;
+                }else{
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, Dps));
+                    p.getInventory().addItem(Sword());
+                }
             }
-            if(hasShield){
-                return;
-            }else{
-                p.getInventory().addItem(Shield());
+            if(playerClass.equals("Healer")){
+                if(hasBow){
+                    return;
+                }else{
+                    p.getInventory().addItem(Bow());
+                    p.getInventory().addItem(Arrow());
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, Integer.MAX_VALUE, Healer));
+                }
             }
-            if(hasPickaxe){
-                return;
-            }else{
-                p.getInventory().addItem(Pickaxe());
+            if(playerClass.equals("Tank")){
+                if(hasShield){
+                    return;
+                }else{
+                    p.getInventory().addItem(Shield());
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, Integer.MAX_VALUE, Tank));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 1, 100));
+                }
             }
-            if(hasBow){
-                return;
-            }else{
-                p.getInventory().addItem(Bow());
-                p.getInventory().addItem(Arrow());
+            if(playerClass.equals("Miner")){
+                if(hasPickaxe){
+                    return;
+                }else{
+                    p.getInventory().addItem(Pickaxe());
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, Miner));
+                }
+            }
+            if(playerClass.equals("Diver")){
+                if(hasTrident){
+                    return;
+                }else{
+                    p.getInventory().addItem(Trident());
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, Integer.MAX_VALUE, Diver));
+                }
             }
         }else{
             p.getInventory().removeItem(Shield());
@@ -67,6 +123,12 @@ public class TPListener implements Listener {
             p.getInventory().removeItem(Bow());
             p.getInventory().removeItem(Arrow());
             p.getInventory().removeItem(Pickaxe());
+            p.getInventory().removeItem(Trident());
+            p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
+            p.removePotionEffect(PotionEffectType.REGENERATION);
+            p.removePotionEffect(PotionEffectType.FAST_DIGGING);
+            p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+            p.removePotionEffect(PotionEffectType.WATER_BREATHING);
         }
     }
 }

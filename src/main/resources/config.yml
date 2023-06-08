@@ -8,5 +8,8 @@ Classes:
   TankBuffMultiplier: 9
   Minerbuffmultiplier: 1
   Diverbuffmultiplier: 1
-  allowedwords: "wild"
-  CommandCooldown: 10000
+  allowedwords:
+    - "Wilderness"
+    - "Wilderness_nether"
+    - "Wilderness_the_end"
+  CommandCooldown: 10

@@ -65,6 +65,7 @@ public class ItemStacks {
         ItemStack trident = new ItemStack(Material.TRIDENT);
         trident.addEnchantment(Enchantment.LOYALTY, 3);
         ItemMeta diver = trident.getItemMeta();
+        diver.setUnbreakable(true);
         diver.setDisplayName("Diver trident");
         trident.setItemMeta(diver);
         return trident;

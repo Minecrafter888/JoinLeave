@@ -92,7 +92,8 @@ public class Class implements CommandExecutor {
         return true;
     }
     private void setCooldown(Player player, int clds) {
-        long cooldownTime = System.currentTimeMillis() + (clds + cooldownSeconds);
+        int cooldownconfig = plugin.getConfig().getInt("Classes.CommandCooldown");
+        long cooldownTime = System.currentTimeMillis() + (cooldownconfig * 1000);
         cooldowns.put(player, cooldownTime);
     }
 

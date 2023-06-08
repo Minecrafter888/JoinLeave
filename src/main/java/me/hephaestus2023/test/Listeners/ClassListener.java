@@ -107,6 +107,7 @@ public class ClassListener implements Listener {
                     p.removePotionEffect(PotionEffectType.REGENERATION);
                     p.removePotionEffect(PotionEffectType.FAST_DIGGING);
                     p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+                    p.closeInventory();
                     playerConfig.set("Class", "Dps");
                     savePlayerConfiguration(playerUUID, playerConfig);
 
@@ -132,6 +133,7 @@ public class ClassListener implements Listener {
                     p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
                     p.removePotionEffect(PotionEffectType.FAST_DIGGING);
                     p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+                    p.closeInventory();
                     playerConfig.set("Class", "Healer");
                     savePlayerConfiguration(playerUUID, playerConfig);
 
@@ -157,6 +159,7 @@ public class ClassListener implements Listener {
                     p.removePotionEffect(PotionEffectType.REGENERATION);
                     p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
                     p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+                    p.closeInventory();
                     playerConfig.set("Class", "Miner");
                     savePlayerConfiguration(playerUUID, playerConfig);
 
@@ -173,6 +176,7 @@ public class ClassListener implements Listener {
                     // Set the player's class in the configuration and save it
                     p.getInventory().addItem(Shield());
                     p.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, Integer.MAX_VALUE, Tank));
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.HEAL, 1, 100));
                     p.getInventory().removeItem(Sword());
                     p.getInventory().removeItem(Bow());
                     p.getInventory().removeItem(Arrow());
@@ -182,6 +186,7 @@ public class ClassListener implements Listener {
                     p.removePotionEffect(PotionEffectType.REGENERATION);
                     p.removePotionEffect(PotionEffectType.FAST_DIGGING);
                     p.removePotionEffect(PotionEffectType.WATER_BREATHING);
+                    p.closeInventory();
                     playerConfig.set("Class", "Tank");
                     savePlayerConfiguration(playerUUID, playerConfig);
 
@@ -202,6 +207,7 @@ public class ClassListener implements Listener {
                     p.removePotionEffect(PotionEffectType.REGENERATION);
                     p.removePotionEffect(PotionEffectType.FAST_DIGGING);
                     p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+                    p.closeInventory();
                     playerConfig.set("Class", "Diver");
                     savePlayerConfiguration(playerUUID, playerConfig);
                 }
