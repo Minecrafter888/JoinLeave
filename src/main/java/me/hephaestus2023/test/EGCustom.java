@@ -11,6 +11,8 @@ import me.hephaestus2023.test.Listeners.onDrop;
 import me.hephaestus2023.test.commands.Class;
 import me.hephaestus2023.test.commands.Reload;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.permissions.Permission;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -31,6 +33,9 @@ public final class EGCustom extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ClassListener(this), this);
         getCommand("reload-Test").setExecutor(new Reload());
         getCommand("Class").setExecutor(new Class());
+        PluginManager pluginManager = getServer().getPluginManager();
+        Permission yourPermission = new Permission("EGCustom.ClassChecker");
+        pluginManager.addPermission(yourPermission);
 
     }
 }
