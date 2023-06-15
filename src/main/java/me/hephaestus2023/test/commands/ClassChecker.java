@@ -6,6 +6,8 @@
 package me.hephaestus2023.test.commands;
 
 import me.hephaestus2023.test.EGCustom;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -37,29 +39,39 @@ public class ClassChecker implements CommandExecutor {
             return true;
         }
 
-        if (!(sender instanceof Player)) {
-            sender.sendMessage("This command can only be executed by a player.");
-            return true;
-        }
-
         if (args.length != 1) {
             sender.sendMessage("Usage: /playerinfo <player>");
             return true;
         }
 
-        Player target = plugin.getServer().getPlayer(args[0]);
+        String playerName = args[0];
+        OfflinePlayer offlinePlayer = null;
 
-        if (target == null) {
+        // Check if the player is online
+        Player onlinePlayer = Bukkit.getPlayer(playerName);
+        if (onlinePlayer != null) {
+            offlinePlayer = onlinePlayer;
+        } else {
+            // Player is offline, check by name
+            for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+                if (player.getName() != null && player.getName().equalsIgnoreCase(playerName)) {
+                    offlinePlayer = player;
+                    break;
+                }
+            }
+        }
+
+        if (offlinePlayer == null) {
             sender.sendMessage("Player not found.");
             return true;
         }
 
-        UUID playerUUID = target.getUniqueId();
+        UUID playerUUID = offlinePlayer.getUniqueId();
         YamlConfiguration playerConfig = loadPlayerConfiguration(playerUUID);
 
         if (playerConfig != null && playerConfig.contains("Class")) {
             String playerClass = playerConfig.getString("Class");
-            sender.sendMessage("Player: " + target.getName());
+            sender.sendMessage("Player: " + offlinePlayer.getName());
             sender.sendMessage("Class: " + playerClass);
         } else {
             sender.sendMessage("Player does not have a class assigned.");

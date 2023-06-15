@@ -70,4 +70,44 @@ public class ItemStacks {
         trident.setItemMeta(diver);
         return trident;
     }
+    public static ItemStack Bomberhelm(){
+        ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
+        helmet.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
+        helmet.addEnchantment(Enchantment.BINDING_CURSE, 1);
+        ItemMeta helmetmeta = helmet.getItemMeta();
+        helmetmeta.setDisplayName("Bomber helmet");
+        helmetmeta.setUnbreakable(true);
+        helmet.setItemMeta(helmetmeta);
+        return helmet;
+    }
+    public static ItemStack Bombershirt(){
+        ItemStack shirt = new ItemStack(Material.DIAMOND_CHESTPLATE);
+        shirt.addEnchantment(Enchantment.BINDING_CURSE, 1);
+        shirt.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
+        ItemMeta shirtmeta = shirt.getItemMeta();
+        shirtmeta.setUnbreakable(true);
+        shirtmeta.setDisplayName("Bomber chestplate");
+        shirt.setItemMeta(shirtmeta);
+        return shirt;
+    }
+    public static ItemStack Bomberpant(){
+        ItemStack pants = new ItemStack(Material.DIAMOND_LEGGINGS);
+        pants.addEnchantment(Enchantment.BINDING_CURSE, 1);
+        pants.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
+        ItemMeta pantsmeta = pants.getItemMeta();
+        pantsmeta.setDisplayName("Bomber leggings");
+        pantsmeta.setUnbreakable(true);
+        pants.setItemMeta(pantsmeta);
+        return pants;
+    }
+    public static ItemStack Bomberboots(){
+        ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
+        boots.addEnchantment(Enchantment.BINDING_CURSE, 1);
+        boots.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
+        ItemMeta bootsmeta = boots.getItemMeta();
+        bootsmeta.setDisplayName("Bomber boots");
+        bootsmeta.setUnbreakable(true);
+        boots.setItemMeta(bootsmeta);
+        return boots;
+    }
 }

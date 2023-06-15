@@ -19,7 +19,9 @@ package me.hephaestus2023.test.commands;
         import org.bukkit.inventory.meta.ItemMeta;
         import org.bukkit.plugin.Plugin;
 
+        import java.util.ArrayList;
         import java.util.HashMap;
+        import java.util.List;
         import java.util.Map;
 
 public class Class implements CommandExecutor {
@@ -82,6 +84,16 @@ public class Class implements CommandExecutor {
             diver.setItemMeta(Divermeta);
 
             invent.setItem(4, diver);
+
+            ItemStack bomber = new ItemStack(Material.TNT, 1);
+            ItemMeta bombermeta = bomber.getItemMeta();
+            bombermeta.setDisplayName(ChatColor.GRAY + "Bomber Class");
+            List<String> lore = new ArrayList<>();
+            lore.add(ChatColor.RED + "" + ChatColor.BOLD + "This class replace armor");
+            bombermeta.setLore(lore);
+            bomber.setItemMeta(bombermeta);
+
+            invent.setItem(5, bomber);
 
             p.openInventory(invent);
             setCooldown(p, cooldownSeconds);

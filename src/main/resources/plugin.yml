@@ -3,7 +3,7 @@ version: '${project.version}'
 main: me.hephaestus2023.test.EGCustom
 api-version: 1.18
 commands:
-  ClassChecker:
+  Checker:
     description: Checks the class of a player
     usage: /<command>
     permission: EGCustom.ClassChecker

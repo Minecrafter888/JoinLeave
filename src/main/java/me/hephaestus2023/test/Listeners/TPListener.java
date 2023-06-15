@@ -53,6 +53,38 @@ public class TPListener implements Listener {
         ItemStack HEALERBOW = Bow();
         ItemStack HEALERARROW = Arrow();
         ItemStack Diver = Trident();
+        ItemStack bomberhelm = Bomberhelm();
+        ItemStack bombershirt = Bombershirt();
+        ItemStack bomberpants = Bomberpant();
+        ItemStack bomberboots = Bomberboots();
+    }
+    public void DeleteItems(Player player){
+        player.getInventory().remove(Bomberhelm());
+        player.getInventory().remove(Bombershirt());
+        player.getInventory().remove(Bomberpant());
+        player.getInventory().remove(Bomberboots());
+        player.updateInventory();
+    }
+    public void AddItems(Player players){
+        players.getInventory().addItem(Bomberhelm());
+        players.getInventory().addItem(Bombershirt());
+        players.getInventory().addItem(Bomberpant());
+        players.getInventory().addItem(Bomberboots());
+        players.updateInventory();
+    }
+    public void EmptyClass(Player player){
+        player.getInventory().removeItem(Sword());
+        player.getInventory().removeItem(Shield());
+        player.getInventory().removeItem(Bow());
+        player.getInventory().removeItem(Arrow());
+        player.getInventory().removeItem(Pickaxe());
+        player.getInventory().removeItem(Trident());
+        DeleteItems(player);
+        player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+        player.removePotionEffect(PotionEffectType.HEALTH_BOOST);
+        player.removePotionEffect(PotionEffectType.REGENERATION);
+        player.removePotionEffect(PotionEffectType.FAST_DIGGING);
+        player.removePotionEffect(PotionEffectType.WATER_BREATHING);
     }
     Plugin plugin = EGCustom.getPlugin(EGCustom.class);
     @EventHandler
@@ -64,6 +96,7 @@ public class TPListener implements Listener {
         boolean hasPickaxe = InventUtil.hasItem(p, Pickaxe());
         boolean hasBow = InventUtil.hasItem(p, Bow());
         boolean hasTrident = InventUtil.hasItem(p, Trident());
+        boolean hasarmor = InventUtil.hasItem(p, Bomberhelm());
         int Dps = plugin.getConfig().getInt("Classes.DpsBuffMultiplier");
         int Healer = plugin.getConfig().getInt("Classes.HealerBuffMultiplier");
         int Tank = plugin.getConfig().getInt("Classes.TankBuffMultiplier");
@@ -117,6 +150,13 @@ public class TPListener implements Listener {
                     p.addPotionEffect(new PotionEffect(PotionEffectType.WATER_BREATHING, Integer.MAX_VALUE, Diver));
                 }
             }
+            if(playerClass.equals("Bomber")){
+                if(hasarmor){
+                    return;
+                }else{
+                    AddItems(p);
+                }
+            }
         }else{
             p.getInventory().removeItem(Shield());
             p.getInventory().removeItem(Sword());
@@ -124,6 +164,7 @@ public class TPListener implements Listener {
             p.getInventory().removeItem(Arrow());
             p.getInventory().removeItem(Pickaxe());
             p.getInventory().removeItem(Trident());
+            DeleteItems(p);
             p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
             p.removePotionEffect(PotionEffectType.REGENERATION);
             p.removePotionEffect(PotionEffectType.FAST_DIGGING);
