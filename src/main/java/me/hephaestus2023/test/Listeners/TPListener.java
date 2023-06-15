@@ -59,17 +59,17 @@ public class TPListener implements Listener {
         ItemStack bomberboots = Bomberboots();
     }
     public void DeleteItems(Player player){
-        player.getInventory().remove(Bomberhelm());
-        player.getInventory().remove(Bombershirt());
-        player.getInventory().remove(Bomberpant());
-        player.getInventory().remove(Bomberboots());
+        player.getInventory().setHelmet(null);
+        player.getInventory().setChestplate(null);
+        player.getInventory().setLeggings(null);
+        player.getInventory().setBoots(null);
         player.updateInventory();
     }
     public void AddItems(Player players){
-        players.getInventory().addItem(Bomberhelm());
-        players.getInventory().addItem(Bombershirt());
-        players.getInventory().addItem(Bomberpant());
-        players.getInventory().addItem(Bomberboots());
+        players.getInventory().setHelmet(Bomberhelm());
+        players.getInventory().setChestplate(Bombershirt());
+        players.getInventory().setLeggings(Bomberpant());
+        players.getInventory().setBoots(Bomberboots());
         players.updateInventory();
     }
     public void EmptyClass(Player player){
@@ -79,7 +79,6 @@ public class TPListener implements Listener {
         player.getInventory().removeItem(Arrow());
         player.getInventory().removeItem(Pickaxe());
         player.getInventory().removeItem(Trident());
-        DeleteItems(player);
         player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
         player.removePotionEffect(PotionEffectType.HEALTH_BOOST);
         player.removePotionEffect(PotionEffectType.REGENERATION);

@@ -67,10 +67,10 @@ public class ClassListener implements Listener {
     }
 
     public void DeleteItems(Player player){
-        player.getInventory().remove(Bomberhelm());
-        player.getInventory().remove(Bombershirt());
-        player.getInventory().remove(Bomberpant());
-        player.getInventory().remove(Bomberboots());
+        player.getInventory().setHelmet(null);
+        player.getInventory().setChestplate(null);
+        player.getInventory().setLeggings(null);
+        player.getInventory().setBoots(null);
         player.updateInventory();
     }
     public void AddItems(Player players){
