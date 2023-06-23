@@ -53,16 +53,25 @@ public class TPListener implements Listener {
         ItemStack HEALERBOW = Bow();
         ItemStack HEALERARROW = Arrow();
         ItemStack Diver = Trident();
+        ItemStack melodist = Stick();
         ItemStack bomberhelm = Bomberhelm();
         ItemStack bombershirt = Bombershirt();
         ItemStack bomberpants = Bomberpant();
         ItemStack bomberboots = Bomberboots();
     }
     public void DeleteItems(Player player){
-        player.getInventory().setHelmet(null);
-        player.getInventory().setChestplate(null);
-        player.getInventory().setLeggings(null);
-        player.getInventory().setBoots(null);
+        if (player.getInventory().getHelmet() != null && player.getInventory().getHelmet().equals(Bomberhelm())) {
+            player.getInventory().setHelmet(null);
+        }
+        if (player.getInventory().getChestplate() != null && player.getInventory().getChestplate().equals(Bombershirt())) {
+            player.getInventory().setHelmet(null);
+        }
+        if (player.getInventory().getLeggings() != null && player.getInventory().getLeggings().equals(Bomberpant())) {
+            player.getInventory().setHelmet(null);
+        }
+        if (player.getInventory().getBoots() != null && player.getInventory().getBoots().equals(Bomberboots())) {
+            player.getInventory().setHelmet(null);
+        }
         player.updateInventory();
     }
     public void AddItems(Player players){
@@ -96,6 +105,7 @@ public class TPListener implements Listener {
         boolean hasBow = InventUtil.hasItem(p, Bow());
         boolean hasTrident = InventUtil.hasItem(p, Trident());
         boolean hasarmor = InventUtil.hasItem(p, Bomberhelm());
+        boolean hasstick = InventUtil.hasItem(p, Stick());
         int Dps = plugin.getConfig().getInt("Classes.DpsBuffMultiplier");
         int Healer = plugin.getConfig().getInt("Classes.HealerBuffMultiplier");
         int Tank = plugin.getConfig().getInt("Classes.TankBuffMultiplier");
@@ -154,6 +164,14 @@ public class TPListener implements Listener {
                     return;
                 }else{
                     AddItems(p);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, Integer.MAX_VALUE, 2));
+                }
+            }
+            if(playerClass.equals("Melodist")){
+                if(hasstick){
+                    return;
+                }else{
+                    p.getInventory().addItem(Stick());
                 }
             }
         }else{

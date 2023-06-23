@@ -7,10 +7,12 @@ package me.hephaestus2023.test.Listeners;
 
 import me.hephaestus2023.test.EGCustom;
 import me.hephaestus2023.test.Utils.InventUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.Furnace;
 import org.bukkit.block.data.type.TNT;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
@@ -19,8 +21,13 @@ import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.FurnaceBurnEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.FurnaceInventory;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.util.UUID;
@@ -47,15 +54,22 @@ public class BomberTnt implements Listener {
         Action action = event.getAction();
         Block clickedBlock = event.getClickedBlock();
 
-        if (clickedBlock != null && clickedBlock.getType() == Material.TNT) {
-            UUID playerUUID = player.getUniqueId();
-            YamlConfiguration playerConfig = loadPlayerConfiguration(playerUUID);
+        UUID playerUUID = player.getUniqueId();
+        YamlConfiguration playerConfig = loadPlayerConfiguration(playerUUID);
 
+        if (playerConfig == null) {
+            return;
+        }
+
+        String playerClass = playerConfig.getString("Class");
+
+        if (!"Bomber".equalsIgnoreCase(playerClass)) {
+            return;
+        }
+        if (clickedBlock != null && clickedBlock.getType() == Material.TNT) {
             if (playerConfig == null) {
                 return;
             }
-
-            String playerClass = playerConfig.getString("Class");
 
             if (!"Bomber".equalsIgnoreCase(playerClass)) {
                 return;

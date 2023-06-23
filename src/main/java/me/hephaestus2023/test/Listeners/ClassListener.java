@@ -60,6 +60,7 @@ public class ClassListener implements Listener {
         ItemStack HEALERBOW = Bow();
         ItemStack HEALERARROW = Arrow();
         ItemStack Diver = Trident();
+        ItemStack Melodist = Stick();
         ItemStack bomberhelm = Bomberhelm();
         ItemStack bombershirt = Bombershirt();
         ItemStack bomberpants = Bomberpant();
@@ -67,10 +68,18 @@ public class ClassListener implements Listener {
     }
 
     public void DeleteItems(Player player){
-        player.getInventory().setHelmet(null);
-        player.getInventory().setChestplate(null);
-        player.getInventory().setLeggings(null);
-        player.getInventory().setBoots(null);
+        if (player.getInventory().getHelmet() != null && player.getInventory().getHelmet().equals(Bomberhelm())) {
+            player.getInventory().setHelmet(null);
+        }
+        if (player.getInventory().getChestplate() != null && player.getInventory().getChestplate().equals(Bombershirt())) {
+            player.getInventory().setHelmet(null);
+        }
+        if (player.getInventory().getLeggings() != null && player.getInventory().getLeggings().equals(Bomberpant())) {
+            player.getInventory().setHelmet(null);
+        }
+        if (player.getInventory().getBoots() != null && player.getInventory().getBoots().equals(Bomberboots())) {
+            player.getInventory().setHelmet(null);
+        }
         player.updateInventory();
     }
     public void AddItems(Player players){
@@ -149,6 +158,7 @@ public class ClassListener implements Listener {
                     p.getInventory().removeItem(Arrow());
                     p.getInventory().removeItem(Pickaxe());
                     p.getInventory().removeItem(Trident());
+                    p.getInventory().removeItem(Stick());
                     DeleteItems(p);
                     p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
                     p.removePotionEffect(PotionEffectType.REGENERATION);
@@ -265,11 +275,24 @@ public class ClassListener implements Listener {
                     if(playerClass != null && playerClass.equals("Bomber")){
                         p.closeInventory();
                         p.sendMessage("You already are within this class. Please pick another");
+                        return;
                     }
 
                     AddItems(p);
                     bomberclass(p);
+                    p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, Integer.MAX_VALUE, 2));
                     playerConfig.set("Class", "Bomber");
+                    savePlayerConfiguration(playerUUID, playerConfig);
+                    p.closeInventory();
+                }else if(e.getCurrentItem().getType() == Material.JUKEBOX){
+                    if(playerClass != null && playerClass.equals("Melodist")){
+                        p.closeInventory();
+                        p.sendMessage("You already are within this class. Please pick another");
+                        return;
+                    }
+                    p.getInventory().addItem(Stick());
+                    EmptyClass(p);
+                    playerConfig.set("Class", "Melodist");
                     savePlayerConfiguration(playerUUID, playerConfig);
                     p.closeInventory();
                 }

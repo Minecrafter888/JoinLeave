@@ -28,6 +28,9 @@ public class onDrop implements Listener {
        }if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Miner pickaxe")){
 
            e.setCancelled(true);
+       }if (e.getItemDrop().getItemStack().getItemMeta().getDisplayName().equalsIgnoreCase("Diver trident")){
+
+           e.setCancelled(true);
        }
 
    }
