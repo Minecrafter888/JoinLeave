@@ -45,6 +45,7 @@ public class RespawnListener implements Listener {
         ItemStack bombershirt = Bombershirt();
         ItemStack bomberpants = Bomberpant();
         ItemStack bomberboots = Bomberboots();
+        ItemStack Melodist = Stick();
     }
     public void Bomberarmor(Player p){
         p.getInventory().setHelmet(Bomberhelm());
@@ -77,6 +78,9 @@ public class RespawnListener implements Listener {
         }
         if(playerClass.equals("Bomber")){
             Bomberarmor(player);
+        }
+        if(playerClass.equals("Melodist")){
+            player.getInventory().addItem(Stick());
         }
     }
 }

@@ -13,3 +13,11 @@ Classes:
     - "Wilderness_nether"
     - "Wilderness_the_end"
   CommandCooldown: 10
+  melodist:
+    harmonyveil: 200
+    harmonicdefense:
+      duration: 200
+      amp: 1
+    vitalchorus:
+      duration: 200
+      amp: 1

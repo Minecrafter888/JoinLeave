@@ -42,6 +42,7 @@ public class DeathListener implements Listener {
         ItemStack bombershirt = Bombershirt();
         ItemStack bomberpants = Bomberpant();
         ItemStack bomberboots = Bomberboots();
+        ItemStack Melodist = Stick();
     }
 
     public void Bomberarmor(Player p) {
@@ -88,6 +89,7 @@ public class DeathListener implements Listener {
         itemsToRemove.add(Bombershirt());
         itemsToRemove.add(Bomberpant());
         itemsToRemove.add(Bomberboots());
+        itemsToRemove.add(Stick());
         return itemsToRemove;
     }
 }

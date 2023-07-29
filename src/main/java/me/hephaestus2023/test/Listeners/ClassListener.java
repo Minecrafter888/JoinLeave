@@ -72,13 +72,13 @@ public class ClassListener implements Listener {
             player.getInventory().setHelmet(null);
         }
         if (player.getInventory().getChestplate() != null && player.getInventory().getChestplate().equals(Bombershirt())) {
-            player.getInventory().setHelmet(null);
+            player.getInventory().setChestplate(null);
         }
         if (player.getInventory().getLeggings() != null && player.getInventory().getLeggings().equals(Bomberpant())) {
-            player.getInventory().setHelmet(null);
+            player.getInventory().setLeggings(null);
         }
         if (player.getInventory().getBoots() != null && player.getInventory().getBoots().equals(Bomberboots())) {
-            player.getInventory().setHelmet(null);
+            player.getInventory().setBoots(null);
         }
         player.updateInventory();
     }
@@ -110,6 +110,7 @@ public class ClassListener implements Listener {
         player.getInventory().removeItem(Arrow());
         player.getInventory().removeItem(Pickaxe());
         player.getInventory().removeItem(Trident());
+        player.getInventory().removeItem(Stick());
         player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
         player.removePotionEffect(PotionEffectType.HEALTH_BOOST);
         player.removePotionEffect(PotionEffectType.REGENERATION);
@@ -186,6 +187,7 @@ public class ClassListener implements Listener {
                     p.getInventory().removeItem(Sword());
                     p.getInventory().removeItem(Pickaxe());
                     p.getInventory().removeItem(Trident());
+                    p.getInventory().removeItem(Stick());
                     DeleteItems(p);
                     p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
                     p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
@@ -213,6 +215,7 @@ public class ClassListener implements Listener {
                     p.getInventory().removeItem(Arrow());
                     p.getInventory().removeItem(Sword());
                     p.getInventory().removeItem(Trident());
+                    p.getInventory().removeItem(Stick());
                     DeleteItems(p);
                     p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
                     p.removePotionEffect(PotionEffectType.REGENERATION);
@@ -241,6 +244,7 @@ public class ClassListener implements Listener {
                     p.getInventory().removeItem(Arrow());
                     p.getInventory().removeItem(Pickaxe());
                     p.getInventory().removeItem(Trident());
+                    p.getInventory().removeItem(Stick());
                     DeleteItems(p);
                     p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
                     p.removePotionEffect(PotionEffectType.REGENERATION);
@@ -263,6 +267,7 @@ public class ClassListener implements Listener {
                     p.getInventory().removeItem(Arrow());
                     p.getInventory().removeItem(Pickaxe());
                     p.getInventory().removeItem(Sword());
+                    p.getInventory().removeItem(Stick());
                     DeleteItems(p);
                     p.removePotionEffect(PotionEffectType.HEALTH_BOOST);
                     p.removePotionEffect(PotionEffectType.REGENERATION);

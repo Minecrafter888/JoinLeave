@@ -107,7 +107,7 @@ public class Class implements CommandExecutor {
             List<String> lorebomber = new ArrayList<>();
             lorebomber.add("Right click a tnt block to explode it");
             lorebomber.add("Adds explosion protection armor");
-            lorebomber.add(ChatColor.RED + "" + ChatColor.BOLD + "This class replace armor");
+            lorebomber.add(ChatColor.RED + "" + ChatColor.BOLD + "This class replaces armor");
             bombermeta.setLore(lorebomber);
             bomber.setItemMeta(bombermeta);
 
@@ -118,10 +118,19 @@ public class Class implements CommandExecutor {
             Melodistmeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Melodist");
             List<String> loremelodist = new ArrayList<>();
             loremelodist.add("Gives you buffs depending on interaction");
+            loremelodist.add("Left click gives resistance");
+            loremelodist.add("Right click gives invis");
+            loremelodist.add("Shift gives regen");
             Melodistmeta.setLore(loremelodist);
             Melodist.setItemMeta(Melodistmeta);
 
             invent.setItem(6, Melodist);
+
+            ItemStack archer = new ItemStack(Material.BOW, 1);
+            ItemMeta archermeta = archer.getItemMeta();
+            archermeta.setDisplayName(ChatColor.BLUE + "Archer");
+
+
 
             p.openInventory(invent);
             setCooldown(p, cooldownSeconds);
